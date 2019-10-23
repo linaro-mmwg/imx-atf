@@ -95,7 +95,7 @@ static void bl31_imx_rdc_setup(void)
 	 * programming rdc region for i.mx8mq.
 	 */
 
-#ifdef DECRYPTED_BUFFER_START
+#if defined(DECRYPTED_BUFFER_START) && !defined(CFG_SECURE_HANTRO_VPU)
 	/* Domain 2 no write access to memory region below decrypted video */
 	/* Prevent VPU to decode outside secure decoded buffer */
 	mmio_write_32((uintptr_t)&(imx_rdc->mem_region[2].mrsa), 0);
