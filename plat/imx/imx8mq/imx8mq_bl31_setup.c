@@ -243,11 +243,13 @@ void bl31_early_platform_setup2(u_register_t arg0, u_register_t arg1,
 #endif
 
 #if !defined (CSU_RDC_TEST)
-	int i;
-	/* enable CSU NS access permission */
-	for (i = 0; i < 64; i++) {
-		mmio_write_32(0x303e0000 + i * 4, 0xffffffff);
-	}
+
+	csu_set_default_slaves_modes();
+
+#ifdef CFG_SECURE_HANTRO_VPU
+	csu_set_slave_index_mode(CSU_CSLn_VPU_SEC,CSU_SSRW | CSU_SURW, 1);
+#endif
+
 #endif
 
 	/* Dealloc part 0 and 2 with current DID */
