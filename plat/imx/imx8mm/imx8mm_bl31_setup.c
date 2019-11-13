@@ -79,6 +79,13 @@ static struct rdc_mda_conf masters_config[] = {
 };
 #endif
 
+static struct csu_slave_conf csu_csl_conf[] = {
+	{CSU_CSLn_CAAM, CSU_SURW|CSU_SSRW, 1},
+#ifdef CFG_SECURE_HANTRO_VPU
+	{CSU_CSLn_VPU_SEC, CSU_SURW|CSU_SSRW, 1},
+#endif
+};
+
 /* set RDC settings */
 static void bl31_imx_rdc_setup(void)
 {
@@ -105,7 +112,7 @@ static void bl31_imx_rdc_setup(void)
 
 #ifdef DECRYPTED_BUFFER_END
 	NOTICE("RDC setup memory_region[0] decrypted buffer DID0 W DID2 R/W\n");
-	/* Domain 0 memory region W decrypted video */
+	/* Domain 0+3 memory region W decrypted video */
 	/* Domain 2 memory region R decrypted video */
 	mmio_write_32((uintptr_t)&(imx_rdc->mem_region[0].mrsa), (DECRYPTED_BUFFER_START - IMX_DDR_BASE) >> 1);
 	mmio_write_32((uintptr_t)&(imx_rdc->mem_region[0].mrea), (DECRYPTED_BUFFER_END - IMX_DDR_BASE) >> 1);
