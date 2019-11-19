@@ -71,6 +71,6 @@ $(eval $(call add_define,DECODED_BUFFER_LEN))
 endif
 endif
 
-ifneq (${CFG_SECURE_HANTRO_VPU},)
+ifeq (${CFG_SECURE_HANTRO_VPU},y)
 $(eval $(call add_define,CFG_SECURE_HANTRO_VPU))
 endif
