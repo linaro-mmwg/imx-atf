@@ -127,6 +127,7 @@ static struct csu_slave_conf csu_def_csl_conf[] = {
 	{CSU_CSLn_M4_SEC, CSU_RW, 0},
 	{CSU_CSLn_QSPI_SEC, CSU_RW, 0},
 	{CSU_CSLn_GPU_EXSC, CSU_RW, 0},
+	{CSU_CSLn_PCIE, CSU_RW, 0},
 	{CSU_CSLn_Internal1, CSU_RW, 0},
 	{CSU_CSLn_Internal2, CSU_RW, 0},
 	{CSU_CSLn_Internal3, CSU_RW, 0},
